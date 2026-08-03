@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lumae — Estúdio de vídeo com IA</title>
+  <meta name="description" content="Transforme uma imagem e uma ideia em vídeo, direto no seu navegador.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/progress.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="logo" href="#" aria-label="Lumae início"><span class="logo-mark">L</span><span>Lumae</span></a>
+      <nav aria-label="Navegação principal">
+        <p class="nav-label">Criar</p>
+        <a class="nav-item active" href="#studio"><span>✦</span> Gerar vídeo</a>
+        <a class="nav-item" href="#studio" data-mode="image"><span>◫</span> Imagem em vídeo</a>
+        <a class="nav-item" href="#studio" data-mode="avatar"><span>◉</span> Avatar falante</a>
+        <p class="nav-label">Workspace</p>
+        <a class="nav-item" href="#creations"><span>▦</span> Minhas criações</a>
+        <a class="nav-item" href="#"><span>♡</span> Favoritos</a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="credits"><div><span>Créditos locais</span><strong>∞</strong></div><div class="credit-bar"><i></i></div><small>Geração ilimitada neste dispositivo</small></div>
+      <button class="profile" type="button"><span class="avatar">RB</span><span><b>Meu estúdio</b><small>Ambiente local</small></span><i>•••</i></button>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <button class="menu" type="button" aria-label="Abrir menu">☰</button>
+        <div class="breadcrumb"><span>Estúdio</span><i>/</i><strong>Gerar vídeo</strong></div>
+        <div class="top-actions"><span class="local-pill"><i></i> Processamento local</span><button class="ghost-btn" type="button">Como funciona</button></div>
+      </header>
+
+      <section class="workspace" id="studio">
+        <div class="page-heading">
+          <div><span class="kicker">VÍDEO COM IA</span><h1>Transforme ideias em <em>movimento.</em></h1><p>Envie um retrato, escreva a fala e crie um vídeo pronto para compartilhar.</p></div>
+          <div class="safe-badge"><span>⌁</span><div><b>Privado por padrão</b><small>Nada sai desta máquina</small></div></div>
+        </div>
+
+        <div class="studio-grid">
+          <form id="generator" class="composer">
+            <div class="mode-tabs" role="tablist">
+              <button class="mode-tab active" type="button" data-mode="avatar"><span>◉</span> Avatar falante</button>
+              <button class="mode-tab" type="button" data-mode="image"><span>◫</span> Imagem em vídeo</button>
+            </div>
+
+            <div class="form-section source-section">
+              <div class="section-title"><span>01</span><div><b>Imagem de referência</b><small>Escolha o personagem principal</small></div></div>
+              <label class="drop" id="imageDrop">
+                <input id="image" type="file" accept="image/jpeg,image/png,image/webp" required>
+                <img id="preview" alt="Prévia do retrato">
+                <span class="upload-icon">↥</span><b>Arraste uma imagem ou clique para enviar</b><small>JPG, PNG ou WEBP · retratos frontais funcionam melhor</small>
+                <span class="replace">Trocar imagem</span>
+              </label>
+            </div>
+
+            <div class="form-section prompt-section">
+              <div class="section-title"><span>02</span><div><b>O que deve ser dito?</b><small>Descreva a cena como você imagina</small></div><button id="enhance" class="enhance" type="button">✦ Melhorar prompt</button></div>
+              <div class="prompt-box"><textarea id="speechText" maxlength="2000" placeholder="Ex: Olá! Hoje eu quero mostrar uma ideia que pode transformar a forma como você cria conteúdo..."></textarea><span id="charCount">0 / 2000</span></div>
+              <div class="suggestions"><span>Experimente:</span><button type="button">Apresentação profissional</button><button type="button">Convite para evento</button><button type="button">Vídeo para redes sociais</button></div>
+            </div>
+
+            <div class="form-section audio-section">
+              <div class="section-title"><span>03</span><div><b>Voz e áudio</b><small>Use voz sintética ou envie seu próprio áudio</small></div></div>
+              <div class="audio-grid">
+                <div class="field"><label for="voice">Voz</label><div class="select-wrap"><span class="voice-orb">◍</span><select id="voice"><option value="female-clara-xtts">Clara · Voz real XTTS</option><option value="female-luna">Luna · Sintética</option><option value="male-cadu">Cadu · Masculina calma</option><option value="male-faber">Faber · Masculina profunda</option></select></div></div>
+                <label class="media-upload"><input id="media" type="file" accept="audio/*,video/mp4,video/webm"><span>♫</span><div><b>Enviar áudio</b><small id="mediaName">MP3, WAV ou MP4</small></div></label>
+              </div>
+              <label class="motion-upload"><input id="motion" type="file" accept="video/mp4,video/webm,video/quicktime"><span>♧</span><div><b>Movimento dos braços no meio da fala</b><small id="motionName">Envie somente o gesto; ele será centralizado automaticamente</small></div></label>
+              <div class="voice-recorder"><div><b>Clone sua própria voz</b><small>Grave de 6 a 15 segundos em um lugar silencioso.</small></div><button id="recordVoice" type="button"><span>●</span> Gravar minha voz</button><button id="stopVoice" type="button" hidden>■ Parar</button><span id="recordStatus">Use somente sua voz ou uma voz com autorização.</span></div>
+              <button id="previewVoice" class="preview-voice" type="button"><span>▶</span> Ouvir prévia da voz</button><audio id="voicePreview" controls hidden></audio>
+            </div>
+
+            <div class="settings-row">
+              <div class="setting"><label>Formato</label><div class="segmented"><button class="active" type="button">1:1</button><button type="button">9:16</button><button type="button">16:9</button></div></div>
+              <div class="setting"><label>Qualidade</label><div class="quality"><span>FAST</span><b>512p</b></div></div>
+              <div class="setting"><label>Modelo</label><div class="quality"><span class="model-dot"></span><b>Neural · rosto estabilizado</b></div></div>
+            </div>
+
+            <div class="generate-row"><div><b>Qualidade neural</b><small>Mais realista; pode demorar em CPU</small></div><button id="generate" type="submit"><span>✦ Gerar vídeo</span><i>→</i></button></div>
+          </form>
+
+          <aside class="preview-card">
+            <div class="preview-head"><div><span class="live-dot"></span><b>Pré-visualização</b></div><span>1:1</span></div>
+            <div class="preview-stage"><div class="ambient a1"></div><div class="ambient a2"></div><div class="empty-state"><span class="play-shape">▶</span><b>Seu vídeo aparecerá aqui</b><small>Adicione uma imagem e escreva uma fala para começar</small></div></div>
+            <div class="preview-info"><span>RESOLUÇÃO <b>512 × 512</b></span><span>FORMATO <b>MP4</b></span><span>ÁUDIO <b>Incluído</b></span></div>
+          </aside>
+        </div>
+
+        <section id="result" class="result" hidden>
+          <div class="status"><span class="loader"></span><div class="status-copy"><div class="status-line"><b id="statusTitle">Criando seu vídeo…</b><strong id="statusPercent">0%</strong></div><p id="statusMessage">Preparando o estúdio.</p><div class="progress-track"><i id="progressBar"></i></div></div></div>
+          <div class="result-media"><video id="video" controls playsinline hidden></video></div>
+          <button id="approve" class="approve" type="button" hidden><span>✓ Aprovar 5 segundos e gerar vídeo completo</span><i>→</i></button>
+          <a id="download" class="download" download="lumae-video.mp4" hidden>↓ Baixar vídeo</a>
+        </section>
+
+        <section class="recent" id="creations"><div class="recent-head"><div><h2>Feito para o seu próximo conteúdo</h2><p>Um fluxo simples, do retrato ao vídeo final.</p></div><a href="#studio">Criar agora →</a></div><div class="feature-grid"><article><span>01</span><div class="feature-art art-one">◫</div><h3>Comece com uma imagem</h3><p>Use um retrato nítido para preservar os detalhes do personagem.</p></article><article><span>02</span><div class="feature-art art-two">⌁</div><h3>Adicione uma voz</h3><p>Escolha uma voz em português ou envie uma gravação pronta.</p></article><article><span>03</span><div class="feature-art art-three">▶</div><h3>Exporte seu vídeo</h3><p>Baixe o resultado com áudio, pronto para publicar.</p></article></div></section>
+      </section>
+      <footer><span>© 2026 Lumae Studio</span><div><a href="#">Privacidade</a><a href="#">Termos</a><a href="#">Ajuda</a></div></footer>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

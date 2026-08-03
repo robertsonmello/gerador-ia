@@ -1,0 +1,14 @@
+.status-copy{flex:1;min-width:0}
+.status-line{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.status-line strong{color:var(--accent);font-size:12px;font-variant-numeric:tabular-nums}
+.progress-track{height:5px;background:#252a31;border-radius:10px;overflow:hidden;margin-top:12px;width:100%}
+.progress-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,#7dab2d,var(--accent));border-radius:10px;transition:width .5s ease;box-shadow:0 0 12px #b8ff3d55}
+.approve{display:flex;align-items:center;justify-content:space-between;width:min(100%,570px);margin:16px auto 0;border:0;border-radius:8px;padding:14px 17px;background:var(--accent);color:#111;font-weight:700;font-size:11px;cursor:pointer}
+.approve:hover{box-shadow:0 0 25px #b8ff3d30;transform:translateY(-1px)}
+.approve:disabled{opacity:.5;cursor:wait}
+.approve[hidden]{display:none}
+.voice-recorder{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:8px;margin-top:12px;padding:12px;border:1px solid #2d333c;border-radius:9px;background:#0e1115}
+.voice-recorder>div{display:flex;flex-direction:column;gap:3px}.voice-recorder b{font-size:11px}.voice-recorder small,.voice-recorder>span{color:#6f7781;font-size:9px}.voice-recorder>span{grid-column:1/-1}.voice-recorder button{border:1px solid #353c46;border-radius:7px;background:#1a1e24;color:#d9dde2;padding:9px 11px;font-size:9px;cursor:pointer}.voice-recorder button span{color:#ff5f67}.voice-recorder button[hidden]{display:none}
+.voice-recorder+.preview-voice{display:flex;align-items:center;gap:6px;margin-top:11px;padding:9px 4px}.voice-recorder+.preview-voice+audio{margin-top:8px}
+@media(max-width:700px){.voice-recorder{grid-template-columns:1fr}.voice-recorder>span{grid-column:1}.voice-recorder button{width:100%}}
+.motion-upload{display:flex;align-items:center;gap:10px;margin-top:12px;padding:12px;border:1px dashed #3a424d;border-radius:9px;background:#11151a;cursor:pointer}.motion-upload input{display:none}.motion-upload>span{color:var(--accent);font-size:20px}.motion-upload>div{display:flex;flex-direction:column;gap:3px}.motion-upload b{font-size:11px}.motion-upload small{font-size:9px;color:#747c87;max-width:420px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

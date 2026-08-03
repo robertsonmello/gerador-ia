@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtualenv
+.venv/
+.venv-*/
+venv/
+
+# Cache
+.cache/
+.pytest_cache/
+
+# HuggingFace
+huggingface/
+
+# IA
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+
+# Modelos
+models/
+checkpoints/
+weights/
+
+# Outputs
+outputs/
+output/
+temp/
+tmp/
+
+# Git internos
+vendor/**/.git/
+
+# VSCode
+.vscode/
+
+# Linux
+*.swp
